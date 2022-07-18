@@ -1,19 +1,10 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './globalStyles.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Welcome from './Welcome/welcome';
-import UserHome from './UserHome/userHome';
-import History from './History/history';
-import AddService from './AddService/addService';
-import RecoverPassword from './Register/recoverPassword';
-import RegisterPage from './Register/register';
-import Notifications from './Notifications/notifications';
-import Profile from './Profile/profile';
-import Sucursales from './Sucursales/sucursales';
-import ServiceDetails from './ServiceDetails/serviceDetails';
-import UserDetails from './ServiceDetails/userDetails';
-import Transport from './Transport/transport';
+import Welcome from './Welcome/welcome.jsx';
+import Tracking from './Tracking/tracking.jsx';
 import reportWebVitals from './reportWebVitals';
 import { UserDataContextProvider } from './context/userData-context.js';
 import './i18n.js';
@@ -21,20 +12,10 @@ import './i18n.js';
 ReactDOM.render(
   <React.StrictMode>
     <UserDataContextProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/recoverPassword" element={<RecoverPassword />} />
-          <Route path="/newAccount" element={<RegisterPage />} />
-          <Route path="/addService" element={<AddService />} />
-          <Route path="/userHome" element={<UserHome />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/details/:id" element={<ServiceDetails />} />
-          <Route path="/userDetails/:item" element={<UserDetails />} />
-          <Route path="/sucursales" element={<Sucursales />} />
-          <Route path="/transport/:id" element={<Transport />} />
+          <Route path="/tracking/:id" element={<Tracking />} />
         </Routes>
       </BrowserRouter>
     </UserDataContextProvider>

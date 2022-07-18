@@ -1,0 +1,385 @@
+@import '/src/globalStyles';
+
+.mainContainer {
+  padding: 3rem 1.5rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.loader {
+  display: grid;
+  text-align: center;
+  position: relative;
+  top: 35vh;
+
+  div {
+    margin: 0 auto;
+  }
+}
+
+.btnLogin {
+  font-family: 'Montserrat', sans-serif;
+  padding: 0.8rem !important;
+  width: 100%;
+  border-radius: 20px !important;
+  margin: 2.5rem 0 1.5rem 0 !important;
+  background-color: $red-custom  !important;
+}
+
+.btnLogout {
+  font-family: 'Montserrat', sans-serif;
+  padding: 0.8rem !important;
+  width: 40%;
+  border-radius: 20px !important;
+  margin: 2.5rem 0 1.5rem 0 !important;
+  background-color: $blue-cotizado  !important;
+  position: fixed !important;
+  bottom: 0px;
+  left: 20px;
+  z-index: 9999;
+}
+
+.btnCall {
+  font-family: 'Montserrat', sans-serif;
+  padding: 0.8rem !important;
+  width: 40%;
+  border-radius: 20px !important;
+  margin: 2.5rem 0 1.5rem 0 !important;
+  position: fixed !important;
+  bottom: 0px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.nipDetails {
+  background-color: $red-light;
+  color: white;
+  border-radius: 20px;
+  padding: 4% 6%;
+  margin-bottom: 2rem;
+}
+
+.borderBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    font-size: 2.2rem;
+    margin-left: 0.5rem;
+  }
+}
+
+.tripTo {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  p span {
+    font-weight: 300;
+    font-size: 1rem;
+  }
+
+  p {
+    display: grid;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 0.9;
+    width: 40%;
+  }
+}
+
+.trackingMainArea {
+  margin: 2rem 0 4rem 0;
+
+  .dnone {
+    display: none !important;
+  }
+
+  .trackingDetail {
+    align-items: center;
+    margin: 1rem 0;
+
+    &:last-child {
+      span.poste {
+        display: none;
+      }
+    }
+
+    p {
+      margin-left: 1rem;
+      width: 100%;
+      display: grid;
+      position: relative;
+      bottom: 8px;
+
+      span {
+        font-size: 0.8rem;
+        float: right;
+        position: relative;
+        right: 0px;
+        width: 95%;
+        text-align: right;
+      }
+    }
+
+    span {
+      display: grid;
+
+      .MuiAvatar-circular {
+        z-index: 10;
+      }
+
+      span.poste {
+        width: 1.3%;
+        height: 3rem;
+        background-color: #8080805c;
+        position: absolute;
+        left: 42px;
+        margin-top: 39px;
+      }
+    }
+  }
+
+  .updateTrack {
+    background: $green-light;
+    float: right;
+    margin: 1rem 0 0 1rem;
+    color: white;
+  }
+
+  .cancelTrack {
+    background: $red-custom;
+    float: right;
+    margin-top: 1rem;
+    color: white;
+  }
+}
+
+.inputSearch {
+  padding-top: 2rem;
+}
+
+.btnFamily {
+  margin: 0.5rem auto !important;
+  border-radius: 20px !important;
+  padding: 0.7rem !important;
+  width: 80% !important;
+  background: $purple  !important;
+  text-transform: inherit !important;
+  font-size: 1rem !important;
+  color: #fff !important;
+}
+
+.labelNotification {
+  width: 50%;
+  color: #fff !important;
+  margin: 1.5rem 0 0 0rem !important;
+  text-align: center;
+  padding: 0.5rem 0;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  a {
+    color: #fff !important;
+  }
+
+  &.n-red {
+    background: $red-strong;
+  }
+
+  &.n-red-confirmed {
+    background: $red-confirmed;
+  }
+
+  &.n-red-custom {
+    background: $red-custom;
+  }
+
+  &.n-yellow {
+    background: $yellow;
+    color: #000 !important;
+  }
+
+  &.n-blue {
+    background: $blue;
+  }
+
+  &.n-blue-cotizado {
+    background: $blue-cotizado;
+  }
+
+  &.n-orange {
+    background: $orange;
+  }
+
+  &.n-green {
+    background: $green-dark;
+  }
+
+  &.n-green-light {
+    background: $green-light;
+  }
+
+  &.n-purple {
+    background: $purple;
+  }
+}
+
+@media only screen and (max-width: 1536px) and (min-width: 766px) {
+
+  .labelNotification {
+    width: 30%;
+  }
+
+  .halfBtn {
+    width: 25% !important;
+
+    &.left {
+      left: 15% !important;
+    }
+
+    &.right {
+      right: 15% !important;
+    }
+  }
+
+  .trackingMainArea .trackingDetail span span.poste {
+    width: 0.3%;
+    height: 2rem;
+    background-color: #8080805c;
+    position: absolute;
+    left: 256px;
+    margin-top: 39px;
+  }
+
+  .mainContainer {
+    padding: 4rem 6rem !important;
+
+    .flags {
+      width: 16%;
+    }
+
+    .nipDetails {
+      width: 35%;
+      padding: 2% 3%;
+      margin-left: 3rem;
+      margin-top: 2rem;
+    }
+
+    .trackingDetails {
+      margin-left: 3rem;
+    }
+
+    .trackingMainArea {
+      margin-left: 3rem;
+
+      span {
+        span.poste {
+          width: 0.4%;
+          height: 3rem;
+          background-color: #8080805c;
+          position: absolute;
+          left: 161px;
+          margin-top: 39px;
+        }
+      }
+
+      .trackingDetail {
+        p {
+          width: 45%;
+        }
+      }
+    }
+
+    .btnResponsive {
+      width: 100%;
+      text-align: center;
+
+      button {
+        width: 45%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1920px) and (min-width: 1536px) {
+
+  .labelNotification {
+    width: 20%;
+  }
+
+  .trackingMainArea .trackingDetail span span.poste {
+    width: 0.3%;
+    height: 2rem;
+    background-color: #8080805c;
+    position: absolute;
+    left: 256px;
+    margin-top: 39px;
+  }
+
+  .halfBtn {
+    width: 25% !important;
+
+    &.left {
+      left: 15% !important;
+    }
+
+    &.right {
+      right: 15% !important;
+    }
+  }
+
+  .mainContainer {
+    padding: 4rem 6rem !important;
+
+    .flags {
+      width: 10%;
+      left: 40px !important;
+      bottom: 10px !important;
+    }
+
+    .nipDetails {
+      width: 28%;
+      padding: 1.6% 2.5%;
+      margin-left: 3rem;
+      margin-top: 2rem;
+    }
+
+    .trackingDetails {
+      margin-left: 3rem;
+    }
+
+    .trackingMainArea {
+      margin-left: 3rem;
+
+      span {
+        span.poste {
+          width: 0.3%;
+          height: 3rem;
+          background-color: #8080805c;
+          position: absolute;
+          left: 161px;
+          margin-top: 39px;
+        }
+      }
+
+      .trackingDetail {
+        p {
+          width: 45%;
+        }
+      }
+    }
+
+    .btnResponsive {
+      width: 100%;
+      text-align: center;
+
+      button {
+        width: 35%;
+      }
+    }
+  }
+}
