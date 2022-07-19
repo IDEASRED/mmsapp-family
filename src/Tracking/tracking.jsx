@@ -27,6 +27,7 @@ import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import PhoneInTalkRoundedIcon from '@mui/icons-material/PhoneInTalkRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 import {
  Button,
  Avatar,
@@ -38,8 +39,6 @@ import {
 import { TailSpin } from 'react-loader-spinner';
 import './tracking.scss';
 import { userDataContext } from '../context/userData-context.js';
-import mxflag from '../img/mexico.png';
-import usaflag from '../img/usa.png';
 
 const Modal = ({ open, title, handleClose, btn }) => {
   const { t } = useTranslation();
@@ -208,11 +207,13 @@ function Tracking() {
           <div className="flags">
             {!translateEs ? (
               <Button onClick={() => changeLanguage('en')}>
-                <img src={usaflag} alt="usa flag" style={{ width: '60%' }} />
+                <LanguageRoundedIcon /> USA
+                {/* <img src={usaflag} alt="usa flag" style={{ width: '60%' }} /> */}
               </Button>
             ) : (
               <Button onClick={() => changeLanguage('es')}>
-                <img src={mxflag} alt="mx flag" style={{ width: '60%' }} />
+                <LanguageRoundedIcon /> MX
+                {/* <img src={mxflag} alt="mx flag" style={{ width: '60%' }} /> */}
               </Button>
             )}
           </div>
