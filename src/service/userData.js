@@ -4,7 +4,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import {
   collection,
   query,
@@ -14,6 +14,7 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { userDataContext } from '../context/userData-context.js';
 import { db } from '../firebase.js';
 
 export const userDataService = () => {
@@ -21,7 +22,10 @@ export const userDataService = () => {
   const [servicesArr, setServicesArr] = useState([]);
   const [service, setService] = useState(undefined);
   const [loading, setLoading] = useState(false);
+  const { addServicesArray } = useContext(userDataContext);
 
+  const listServs = localStorage.getItem('servList');
+  const servicesList = JSON.parse(listServs);
   const navigate = useNavigate();
 
   const getAllServicesAdmin = async () => {
@@ -35,10 +39,17 @@ export const userDataService = () => {
           ...docx.data(),
         };
         servArr.push(userServices);
+        // addServicesArray(servArr);
+        localStorage.setItem('servList', JSON.stringify(servArr));
         setServicesArr(servArr);
+        // console.log('s get: ', servArr);
       });
     });
   };
+
+  // useEffect(() => {
+  //   setLoading(true);
+  // }, [servicesList]);
 
   const getServiceDetail = (array, id) => {
     const findService = array.find((i) => i.id === id);
@@ -115,5 +126,6 @@ export const userDataService = () => {
     getServiceTracking,
     searchFamilyTracking,
     loading,
+    setLoading,
   };
 };

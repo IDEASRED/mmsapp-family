@@ -36,7 +36,7 @@ function Welcome() {
   const [notFound, setNotFound] = useState(false);
   const [option, setOption] = useState('email');
 
-  const { changeL } = useContext(userDataContext);
+  const { changeL, addServicesArray } = useContext(userDataContext);
 
   const { servicesArr, getAllServicesAdmin, loading, searchFamilyTracking, service } =
   userDataService();
@@ -65,6 +65,7 @@ function Welcome() {
 
   const onSubmit = (data) => {
     if (servicesArr !== undefined) {
+      addServicesArray(servicesArr);
       if (option === 'phone') {
         const obj = {
           phone: data.phone,
@@ -89,7 +90,8 @@ function Welcome() {
         resetField('phone');
         resetField('nip_rastreo');
       } else if (!notFound && service !== undefined) {
-        navigate(`/tracking/${service.id}`, { state: { data: service } });
+        navigate(`/tracking/${service.id}`, { state: { data: service.id } });
+        // navigate(`/tracking/${service.id}`);
       }
     }
   }, [loading, notFound]);
