@@ -27,6 +27,7 @@ export const UserData = () => {
   const addUserData = (data) => {
     setUser(data);
   };
+  // console.log('s context_updated: ', services);
 
   // eslint-disable-next-line object-curly-newline
   return {

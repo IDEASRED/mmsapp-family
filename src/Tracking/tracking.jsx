@@ -38,11 +38,16 @@ import {
 } from '@mui/material';
 import { TailSpin } from 'react-loader-spinner';
 import './tracking.scss';
+import { userDataService } from '../service/userData.js';
 import { userDataContext } from '../context/userData-context.js';
 
 const Modal = ({ open, title, handleClose, btn }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const handleOutSession = () => {
+    localStorage.clear();
+    navigate('/');
+  };
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="false">
       <DialogTitle>{t(`${title}`)}</DialogTitle>
@@ -56,7 +61,7 @@ const Modal = ({ open, title, handleClose, btn }) => {
       <DialogActions>
         <Button onClick={handleClose}>{t('Cancel')}</Button>
         {btn === 'Yes' ? (
-          <Button form="form-family" type="submit" variant="contained" onClick={() => navigate('/')}>{t(`${btn}`)}</Button>
+          <Button form="form-family" type="submit" variant="contained" onClick={handleOutSession}>{t(`${btn}`)}</Button>
           ) : (
           <Button form="form-family" type="submit" variant="contained" href="tel:528341027851">{t(`${btn}`)}</Button>
         )}
@@ -70,21 +75,45 @@ function Tracking() {
   const location = useLocation();
   const { changeL } = useContext(userDataContext);
 
+  const { loading, setLoading } = userDataService();
   const [translateEs, setTranslateEs] = useState(false);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [trackingInfo, setTrackingInfo] = useState({});
   const [list, setList] = useState([]);
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [btn, setBtn] = useState('');
+  const listServs = localStorage.getItem('servList');
+  const servicesList = JSON.parse(listServs);
+  const filterApply = servicesList.filter((i) => i.id === location.state.data);
 
   useEffect(() => {
-    setTrackingInfo(location.state.data);
-    setList(location.state.data.rastreo);
+    if (filterApply !== undefined) {
+      setTrackingInfo(filterApply[0]);
+      setList(filterApply[0].rastreo);
+    }
+    // getServiceDetail(servicesList, location.state.data);
+    console.log('s get upd: ', filterApply);
+    console.log('location data: ', location.state.data);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
   }, []);
+
+  useEffect(() => {
+    if (filterApply !== undefined) {
+      setTrackingInfo(filterApply[0]);
+      setList(filterApply[0].rastreo);
+    }
+  }, [listServs]);
+
+  // useEffect(() => {
+  //   if (service !== undefined) {
+  //     console.log('s get: ', service);
+  //     setTrackingInfo(service);
+  //     setList(service.rastreo);
+  //   }
+  // }, [service]);
 
   const changeLanguage = (lng) => {
     setTranslateEs(!translateEs);
@@ -207,12 +236,12 @@ function Tracking() {
           <div className="flags">
             {!translateEs ? (
               <Button onClick={() => changeLanguage('en')}>
-                <LanguageRoundedIcon /> USA
+                <LanguageRoundedIcon /> ENG
                 {/* <img src={usaflag} alt="usa flag" style={{ width: '60%' }} /> */}
               </Button>
             ) : (
               <Button onClick={() => changeLanguage('es')}>
-                <LanguageRoundedIcon /> MX
+                <LanguageRoundedIcon /> ESP
                 {/* <img src={mxflag} alt="mx flag" style={{ width: '60%' }} /> */}
               </Button>
             )}
