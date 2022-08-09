@@ -97,7 +97,7 @@ function Welcome() {
         // navigate(`/tracking/${service.id}`);
       }
     }
-  }, [loading, notFound]);
+  }, [loading, notFound, service]);
 
   useEffect(() => {
     // console.log('s2: ', service);
