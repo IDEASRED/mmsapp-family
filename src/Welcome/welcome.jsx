@@ -92,7 +92,7 @@ function Welcome() {
         resetField('email');
         resetField('phone');
         resetField('nip_rastreo');
-      } else if (!notFound && service !== undefined) {
+      } else if (service !== undefined) {
         navigate(`/tracking/${service.id}`, { state: { data: service.id } });
         // navigate(`/tracking/${service.id}`);
       }
