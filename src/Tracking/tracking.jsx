@@ -63,7 +63,7 @@ const Modal = ({ open, title, handleClose, btn }) => {
         {btn === 'Yes' ? (
           <Button form="form-family" type="submit" variant="contained" onClick={handleOutSession}>{t(`${btn}`)}</Button>
           ) : (
-          <Button form="form-family" type="submit" variant="contained" href="tel:528341027851">{t(`${btn}`)}</Button>
+          <Button form="form-family" type="submit" variant="contained" href="tel:+528341027851">{t(`${btn}`)}</Button>
         )}
       </DialogActions>
     </Dialog>
