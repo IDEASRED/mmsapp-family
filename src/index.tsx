@@ -5,6 +5,8 @@ import './globalStyles.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Welcome from './Welcome/welcome.jsx';
 import Tracking from './Tracking/tracking.jsx';
+import Terms from './Terms/Terms.jsx';
+import Privacy from './Privacy/Privacy.jsx';
 import reportWebVitals from './reportWebVitals';
 import { UserDataContextProvider } from './context/userData-context.js';
 import './i18n.js';
@@ -16,6 +18,8 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/tracking/:id" element={<Tracking />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </BrowserRouter>
     </UserDataContextProvider>

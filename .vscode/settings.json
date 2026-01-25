@@ -7,7 +7,7 @@
   "editor.acceptSuggestionOnEnter": "on",
   "editor.suggestOnTriggerCharacters": true,
   "editor.suggest.localityBonus": true,
-  "editor.wordBasedSuggestions": true,
+  "editor.wordBasedSuggestions": "matchingDocuments",
   "editor.parameterHints.enabled": true,
   "[javascriptreact]": {
     "editor.defaultFormatter": null

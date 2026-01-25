@@ -1,0 +1,123 @@
+@import '/src/globalStyles';
+
+.privacy-container {
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+
+  .back-button {
+    color: $red-custom;
+    text-transform: inherit;
+    font-family: 'Montserrat', sans-serif;
+
+    &:hover {
+      background-color: rgba(143, 15, 30, 0.1);
+    }
+  }
+
+  .privacy-title {
+    color: $red-custom;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .privacy-date {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .privacy-content {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+
+    .privacy-section {
+      margin-bottom: 2rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .section-title {
+        color: $red-custom;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .section-text {
+        color: #455a64;
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1.6;
+        text-align: justify;
+        margin-bottom: 0.75rem;
+      }
+
+      .privacy-subsection {
+        margin: 1.5rem 0;
+
+        .subsection-title {
+          color: $red-custom;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 600;
+          font-size: 1.1rem;
+          margin-bottom: 0.75rem;
+        }
+      }
+
+      .privacy-list {
+        color: #455a64;
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1.8;
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+
+        li {
+          margin-bottom: 0.5rem;
+          text-align: justify;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .privacy-container {
+    padding: 1rem 0.5rem;
+
+    .privacy-title {
+      font-size: 2rem;
+    }
+
+    .privacy-content {
+      padding: 1.5rem;
+
+      .privacy-section {
+        .section-title {
+          font-size: 1.25rem;
+        }
+
+        .privacy-subsection {
+          .subsection-title {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .privacy-container {
+    padding: 3rem 2rem;
+
+    .privacy-content {
+      padding: 3rem;
+    }
+  }
+}
