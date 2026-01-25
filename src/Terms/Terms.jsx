@@ -30,7 +30,7 @@ function Terms() {
       </Typography>
 
       <Typography variant="body2" color="textSecondary" className="terms-date">
-        Última actualización: ___ / ___ / _____
+        Última actualización: 25 / 01 / 2026
       </Typography>
 
       <div className="terms-content">
@@ -362,7 +362,13 @@ function Terms() {
             Para dudas o aclaraciones, el Usuario puede contactar al Proveedor en:
           </Typography>
           <ul className="terms-list">
-            <li>Correo electrónico: [correo de contacto]</li>
+            <li>
+              Correo electrónico:
+              {' '}
+              <a href="mailto:mexicomortuaryservices@gmail.com">
+                mexicomortuaryservices@gmail.com
+              </a>
+            </li>
             <li>Teléfono: 81 1934 0490</li>
           </ul>
           <Typography variant="body1" className="section-text" style={{ marginTop: '1.5rem', fontWeight: 'bold' }}>

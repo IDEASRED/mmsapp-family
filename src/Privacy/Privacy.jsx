@@ -26,7 +26,7 @@ function Privacy() {
       </Typography>
 
       <Typography variant="body2" color="textSecondary" className="privacy-date">
-        Última actualización: ___ / ___ / _____
+        Última actualización: 25 / 01 / 2026
       </Typography>
 
       <div className="privacy-content">
@@ -184,7 +184,13 @@ function Privacy() {
             Las solicitudes ARCO deberán enviarse a:
           </Typography>
           <ul className="privacy-list">
-            <li>Correo electrónico: [correo de privacidad]</li>
+            <li>
+              Correo electrónico:
+              {' '}
+              <a href="mailto:mexicomortuaryservices@gmail.com">
+                mexicomortuaryservices@gmail.com
+              </a>
+            </li>
           </ul>
           <Typography variant="body1" className="section-text">
             La solicitud deberá incluir nombre, medio de contacto y descripción clara del derecho que se desea ejercer.
