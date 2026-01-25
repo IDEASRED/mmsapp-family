@@ -52,7 +52,7 @@ function Welcome() {
     resetField,
     formState: { errors },
   } = useForm({});
-  const errorMessage = 'Campos requeridos'
+  const errorMessage = 'Campos requeridos';
 
   const changeLanguage = (lng) => {
     setTranslateEs(!translateEs);
