@@ -44,10 +44,22 @@ function Terms() {
             con domicilio en Benito Juárez 1028, Esmeralda, 67140 Guadalupe, N.L. (en adelante, el &quot;Proveedor&quot;).
           </Typography>
           <Typography variant="body1" className="section-text">
-            La Aplicación está dirigida exclusivamente a profesionales del sector funerario, incluyendo, de manera enunciativa más no limitativa, directores de funerarias, casas funerarias, agencias funerarias, operadores funerarios y personal autorizado (en adelante, el &quot;Usuario Profesional&quot;).
+            La Aplicación está dirigida exclusivamente a profesionales del sector funerario,
+            {' '}
+            incluyendo, de manera enunciativa más no limitativa, directores de funerarias,
+            {' '}
+            casas funerarias, agencias funerarias, operadores funerarios y personal autorizado
+            {' '}
+            (en adelante, el &quot;Usuario Profesional&quot;).
           </Typography>
           <Typography variant="body1" className="section-text">
-            La finalidad de la Aplicación es permitir al Usuario Profesional cotizar, solicitar, coordinar, gestionar, rastrear y recibir notificaciones relacionadas con el Transporte Funerario Internacional desde los Estados Unidos de América hacia los Estados Unidos Mexicanos, tanto de cuerpos humanos como de cenizas humanas, conforme a la legislación aplicable en ambos países.
+            La finalidad de la Aplicación es permitir al Usuario Profesional cotizar, solicitar,
+            {' '}
+            coordinar, gestionar, rastrear y recibir notificaciones relacionadas con el Transporte Funerario
+            {' '}
+            Internacional desde los Estados Unidos de América hacia los Estados Unidos Mexicanos,
+            {' '}
+            tanto de cuerpos humanos como de cenizas humanas, conforme a la legislación aplicable en ambos países.
           </Typography>
           <Typography variant="body1" className="section-text">
             El uso de la Aplicación se encuentra sujeto además a las políticas de Apple App Store y Google Play Store.
@@ -56,7 +68,11 @@ function Terms() {
             La Aplicación no está destinada al público en general ni a consumidores finales.
           </Typography>
           <Typography variant="body1" className="section-text">
-            Al descargar, acceder o utilizar la Aplicación, el Usuario Profesional reconoce y acepta quedar legalmente obligado por los presentes Términos y Condiciones. En caso de no estar de acuerdo, deberá abstenerse de utilizar la Aplicación.
+            Al descargar, acceder o utilizar la Aplicación, el Usuario Profesional reconoce y acepta
+            {' '}
+            quedar legalmente obligado por los presentes Términos y Condiciones. En caso de no estar de acuerdo,
+            {' '}
+            deberá abstenerse de utilizar la Aplicación.
           </Typography>
         </section>
 
@@ -68,11 +84,31 @@ function Terms() {
             Para efectos de estos Términos y Condiciones, se entenderá por:
           </Typography>
           <ul className="terms-list">
-            <li><strong>Aplicación:</strong> Software móvil MMS App. Traslados USA – MX.</li>
-            <li><strong>Usuario:</strong> Persona física o moral que accede y utiliza la Aplicación.</li>
-            <li><strong>Servicios:</strong> Cotización, solicitud, gestión, seguimiento y notificación del transporte funerario internacional.</li>
-            <li><strong>Transporte Funerario Internacional:</strong> Traslado legal de restos humanos o cenizas humanas entre EUA y México.</li>
-            <li><strong>Autoridades Competentes:</strong> Entidades gubernamentales de salud, migración, aduanas y relaciones exteriores de EUA y México.</li>
+            <li>
+              <strong>Aplicación:</strong>
+              {' '}
+              Software móvil MMS App. Traslados USA – MX.
+            </li>
+            <li>
+              <strong>Usuario:</strong>
+              {' '}
+              Persona física o moral que accede y utiliza la Aplicación.
+            </li>
+            <li>
+              <strong>Servicios:</strong>
+              {' '}
+              Cotización, solicitud, gestión, seguimiento y notificación del transporte funerario internacional.
+            </li>
+            <li>
+              <strong>Transporte Funerario Internacional:</strong>
+              {' '}
+              Traslado legal de restos humanos o cenizas humanas entre EUA y México.
+            </li>
+            <li>
+              <strong>Autoridades Competentes:</strong>
+              {' '}
+              Entidades gubernamentales de salud, migración, aduanas y relaciones exteriores de EUA y México.
+            </li>
           </ul>
         </section>
 
@@ -84,7 +120,11 @@ function Terms() {
             La Aplicación funciona como una herramienta digital de gestión y comunicación, que facilita el proceso administrativo y operativo del Transporte Funerario Internacional.
           </Typography>
           <Typography variant="body1" className="section-text">
-            El Proveedor no garantiza que los tiempos de traslado, autorizaciones o liberaciones dependientes de Autoridades Competentes se realicen dentro de plazos específicos, ya que estos procesos están fuera de su control.
+            El Proveedor no garantiza que los tiempos de traslado, autorizaciones o liberaciones
+            {' '}
+            dependientes de Autoridades Competentes se realicen dentro de plazos específicos,
+            {' '}
+            ya que estos procesos están fuera de su control.
           </Typography>
         </section>
 
@@ -96,13 +136,21 @@ function Terms() {
             El Usuario reconoce y acepta expresamente que la Aplicación está dirigida exclusivamente a profesionales del sector funerario y no al público en general ni a consumidores finales.
           </Typography>
           <Typography variant="body1" className="section-text">
-            El uso de la Aplicación no crea ni implica relación de consumo, relación cliente– proveedor, ni relación contractual directa entre el Proveedor y los familiares, deudos o terceros relacionados con el fallecido.
+            El uso de la Aplicación no crea ni implica relación de consumo, relación cliente– proveedor,
+            {' '}
+            ni relación contractual directa entre el Proveedor y los familiares, deudos o terceros
+            {' '}
+            relacionados con el fallecido.
           </Typography>
           <Typography variant="body1" className="section-text">
             El Usuario actúa en todo momento como intermediario profesional independiente, siendo el único responsable frente a sus propios clientes finales.
           </Typography>
           <Typography variant="body1" className="section-text">
-            Cualquier reclamación, queja, inconformidad o acción legal iniciada por familiares o terceros deberá ser atendida exclusivamente por el Usuario Profesional, quien libera y mantiene indemne al Proveedor frente a cualquier responsabilidad, daño, reclamación o gasto derivado.
+            Cualquier reclamación, queja, inconformidad o acción legal iniciada por familiares o terceros
+            {' '}
+            deberá ser atendida exclusivamente por el Usuario Profesional, quien libera y mantiene indemne
+            {' '}
+            al Proveedor frente a cualquier responsabilidad, daño, reclamación o gasto derivado.
           </Typography>
         </section>
 
@@ -122,7 +170,11 @@ function Terms() {
             <li>Cumple con la legislación sanitaria, consular, migratoria, aduanera y civil aplicable en Estados Unidos y México.</li>
           </ul>
           <Typography variant="body1" className="section-text">
-            El Proveedor se reserva el derecho de verificar la calidad profesional del Usuario, así como de rechazar, suspender o cancelar el acceso a la Aplicación cuando el Usuario no acredite su carácter profesional o incurra en uso indebido.
+            El Proveedor se reserva el derecho de verificar la calidad profesional del Usuario,
+            {' '}
+            así como de rechazar, suspender o cancelar el acceso a la Aplicación cuando el Usuario
+            {' '}
+            no acredite su carácter profesional o incurra en uso indebido.
           </Typography>
         </section>
 
@@ -211,7 +263,11 @@ function Terms() {
             10. LIMITACIÓN DE RESPONSABILIDAD
           </Typography>
           <Typography variant="body1" className="section-text">
-            El Usuario reconoce que el Transporte Funerario Internacional está sujeto a procesos administrativos, sanitarios y consulares que dependen de Autoridades Competentes ajenas al control del Proveedor.
+            El Usuario reconoce que el Transporte Funerario Internacional está sujeto a procesos
+            {' '}
+            administrativos, sanitarios y consulares que dependen de Autoridades Competentes
+            {' '}
+            ajenas al control del Proveedor.
           </Typography>
           <Typography variant="body1" className="section-text">
             El Proveedor no será responsable, de manera enunciativa más no limitativa, por:
@@ -223,10 +279,18 @@ function Terms() {
             <li>Casos fortuitos o de fuerza mayor.</li>
           </ul>
           <Typography variant="body1" className="section-text">
-            En la máxima medida permitida por la ley, la responsabilidad total del Proveedor se limitará exclusivamente al monto efectivamente pagado por el Usuario por el servicio específico que haya dado origen a la reclamación.
+            En la máxima medida permitida por la ley, la responsabilidad total del Proveedor
+            {' '}
+            se limitará exclusivamente al monto efectivamente pagado por el Usuario por el servicio
+            {' '}
+            específico que haya dado origen a la reclamación.
           </Typography>
           <Typography variant="body1" className="section-text">
-            El Usuario libera y mantiene indemne al Proveedor frente a cualquier reclamación, daño, sanción, multa o responsabilidad derivada del incumplimiento legal o documental imputable al Usuario.
+            El Usuario libera y mantiene indemne al Proveedor frente a cualquier reclamación,
+            {' '}
+            daño, sanción, multa o responsabilidad derivada del incumplimiento legal o documental
+            {' '}
+            imputable al Usuario.
           </Typography>
         </section>
 
@@ -247,7 +311,11 @@ function Terms() {
             12. PROTECCIÓN DE DATOS PERSONALES
           </Typography>
           <Typography variant="body1" className="section-text">
-            El tratamiento de los datos personales se regirá por el Aviso de Privacidad disponible dentro de la Aplicación y en el sitio web oficial del Proveedor, en cumplimiento con la legislación aplicable en México y Estados Unidos.
+            El tratamiento de los datos personales se regirá por el Aviso de Privacidad disponible
+            {' '}
+            dentro de la Aplicación y en el sitio web oficial del Proveedor, en cumplimiento con
+            {' '}
+            la legislación aplicable en México y Estados Unidos.
           </Typography>
         </section>
 
@@ -279,7 +347,11 @@ function Terms() {
             15. LEGISLACIÓN APLICABLE Y JURISDICCIÓN
           </Typography>
           <Typography variant="body1" className="section-text">
-            Estos Términos se rigen por las leyes de los Estados Unidos Mexicanos. Para cualquier controversia, las partes se someten a los tribunales competentes de Guadalupe, Nuevo León, México, renunciando a cualquier otro fuero.
+            Estos Términos se rigen por las leyes de los Estados Unidos Mexicanos. Para cualquier controversia,
+            {' '}
+            las partes se someten a los tribunales competentes de Guadalupe, Nuevo León, México,
+            {' '}
+            renunciando a cualquier otro fuero.
           </Typography>
         </section>
 
