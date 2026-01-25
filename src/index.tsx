@@ -18,6 +18,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/tracking/:id" element={<Tracking />} />
+          {/* Public routes - Always accessible without authentication */}
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
         </Routes>
