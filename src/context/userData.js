@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export const UserData = () => {
   const [user, setUser] = useState({

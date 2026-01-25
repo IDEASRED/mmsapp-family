@@ -43,6 +43,7 @@ function Welcome() {
 
   useEffect(() => {
     getAllServicesAdmin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const {
@@ -51,7 +52,6 @@ function Welcome() {
     resetField,
     formState: { errors },
   } = useForm({});
-  const [errorMessage, setErrorMessage] = useState('');
 
   const changeLanguage = (lng) => {
     setTranslateEs(!translateEs);
@@ -106,6 +106,7 @@ function Welcome() {
         setNotFound(false);
       }, 3000);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
 
   return (

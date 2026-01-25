@@ -15,9 +15,9 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable consistent-return */
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { blueGrey, grey } from '@mui/material/colors';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import AirportShuttleRoundedIcon from '@mui/icons-material/AirportShuttleRounded';
@@ -77,7 +77,6 @@ function Tracking() {
 
   const { loading, setLoading } = userDataService();
   const [translateEs, setTranslateEs] = useState(false);
-  // const [loading, setLoading] = useState(true);
   const [trackingInfo, setTrackingInfo] = useState({});
   const [list, setList] = useState([]);
   const [open, setOpen] = useState(false);
@@ -88,32 +87,21 @@ function Tracking() {
   const filterApply = servicesList.filter((i) => i.id === location.state.data);
 
   useEffect(() => {
-    if (filterApply !== undefined) {
+    if (filterApply !== undefined && filterApply.length > 0) {
       setTrackingInfo(filterApply[0]);
       setList(filterApply[0].rastreo);
     }
-    // getServiceDetail(servicesList, location.state.data);
-    console.log('s get upd: ', filterApply);
-    console.log('location data: ', location.state.data);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
-  }, []);
+  }, [filterApply, setLoading]);
 
   useEffect(() => {
-    if (filterApply !== undefined) {
+    if (filterApply !== undefined && filterApply.length > 0) {
       setTrackingInfo(filterApply[0]);
       setList(filterApply[0].rastreo);
     }
-  }, [listServs]);
-
-  // useEffect(() => {
-  //   if (service !== undefined) {
-  //     console.log('s get: ', service);
-  //     setTrackingInfo(service);
-  //     setList(service.rastreo);
-  //   }
-  // }, [service]);
+  }, [listServs, filterApply]);
 
   const changeLanguage = (lng) => {
     setTranslateEs(!translateEs);
@@ -237,12 +225,10 @@ function Tracking() {
             {!translateEs ? (
               <Button onClick={() => changeLanguage('en')}>
                 <LanguageRoundedIcon /> ENG
-                {/* <img src={usaflag} alt="usa flag" style={{ width: '60%' }} /> */}
               </Button>
             ) : (
               <Button onClick={() => changeLanguage('es')}>
                 <LanguageRoundedIcon /> ESP
-                {/* <img src={mxflag} alt="mx flag" style={{ width: '60%' }} /> */}
               </Button>
             )}
           </div>
@@ -352,7 +338,6 @@ function Tracking() {
             <Button
               variant="contained"
               className="btnLogout halfBtn left"
-              // onClick={() => navigate('/')}
               onClick={() => handleOpen('LogoutTitle', 'Yes')}
             >
               <LogoutRoundedIcon />

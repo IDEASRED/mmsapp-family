@@ -4,33 +4,28 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import {
   collection,
   query,
-  where,
-  getDocs,
   orderBy,
   onSnapshot,
 } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
 import { userDataContext } from '../context/userData-context.js';
 import { db } from '../firebase.js';
 
 export const userDataService = () => {
-  const [userDataServObj, setUserData] = useState({});
+  const [userDataServObj] = useState({});
   const [servicesArr, setServicesArr] = useState([]);
   const [service, setService] = useState(undefined);
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { addServicesArray } = useContext(userDataContext);
-
-  const listServs = localStorage.getItem('servList');
-  const servicesList = JSON.parse(listServs);
-  const navigate = useNavigate();
 
   const getAllServicesAdmin = async () => {
     const servicesRef = collection(db, 'services');
     const q3 = query(servicesRef, orderBy('timestamp', 'desc'));
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const unsub = await onSnapshot(q3, (querySnapshot3) => {
       const servArr = [];
       querySnapshot3.forEach((docx) => {

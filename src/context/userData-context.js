@@ -20,9 +20,9 @@ export const userDataContext = createContext({
   },
   services: [],
   translate: '',
-  addUserData: (e) => {},
-  changeL: (e) => {},
-  addServicesArray: (e) => {},
+  addUserData: () => {},
+  changeL: () => {},
+  addServicesArray: () => {},
 });
 
 export const UserDataContextProvider = ({ children }) => {
