@@ -52,7 +52,7 @@ function Welcome() {
     resetField,
     formState: { errors },
   } = useForm({});
-  const [errorMessage, setErrorMessage] = useState('Campos requeridos');
+  const errorMessage = 'Campos requeridos'
 
   const changeLanguage = (lng) => {
     setTranslateEs(!translateEs);
@@ -98,7 +98,7 @@ function Welcome() {
         // navigate(`/tracking/${service.id}`);
       }
     }
-  }, [loading, notFound, service]);
+  }, [loading, notFound, service, navigate, resetField]);
 
   useEffect(() => {
     // console.log('s2: ', service);
