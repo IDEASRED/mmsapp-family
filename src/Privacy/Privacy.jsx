@@ -245,7 +245,10 @@ function Privacy() {
             Para cualquier duda relacionada con este Aviso de Privacidad:
           </Typography>
           <ul className="privacy-list">
-            <li>Correo electrónico: [correo de contacto]</li>
+            <li>Correo electrónico: {' '}
+              <a href="mailto:mexicomortuaryservices@gmail.com">
+                mexicomortuaryservices@gmail.com
+              </a></li>
             <li>Teléfono: 81 1934 0490</li>
           </ul>
         </section>
