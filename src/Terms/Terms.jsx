@@ -1,6 +1,11 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import { Grid, Typography, Container, Button } from '@mui/material';
+import {
+  Grid,
+  Typography,
+  Container,
+  Button,
+} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -32,7 +37,11 @@ function Terms() {
       <div className="terms-content">
         <section className="terms-section">
           <Typography variant="body1" className="section-text">
-            Bienvenido(a) a la Aplicación Móvil MMS App. Traslados USA – MX (en adelante, la &quot;Aplicación&quot;), disponible para sistemas operativos iOS y Android. La Aplicación es operada por Mexico Mortuary Services, con domicilio en Benito Juárez 1028, Esmeralda, 67140 Guadalupe, N.L. (en adelante, el &quot;Proveedor&quot;).
+            Bienvenido(a) a la Aplicación Móvil MMS App. Traslados USA – MX (en adelante, la &quot;Aplicación&quot;),
+            {' '}
+            disponible para sistemas operativos iOS y Android. La Aplicación es operada por Mexico Mortuary Services,
+            {' '}
+            con domicilio en Benito Juárez 1028, Esmeralda, 67140 Guadalupe, N.L. (en adelante, el &quot;Proveedor&quot;).
           </Typography>
           <Typography variant="body1" className="section-text">
             La Aplicación está dirigida exclusivamente a profesionales del sector funerario, incluyendo, de manera enunciativa más no limitativa, directores de funerarias, casas funerarias, agencias funerarias, operadores funerarios y personal autorizado (en adelante, el &quot;Usuario Profesional&quot;).

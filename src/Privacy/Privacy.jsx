@@ -32,7 +32,15 @@ function Privacy() {
       <div className="privacy-content">
         <section className="privacy-section">
           <Typography variant="body1" className="section-text">
-            Mexico Mortuary Services, con domicilio en Benito Juárez 1028, Esmeralda, 67140 Guadalupe, N.L. (en adelante, el &quot;Responsable&quot;), es responsable del tratamiento de los datos personales recabados a través de la aplicación móvil MMS App. Traslados USA – MX (en adelante, la &quot;Aplicación&quot;), de conformidad con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (México), su Reglamento, y las leyes de privacidad aplicables en los Estados Unidos de América.
+            Mexico Mortuary Services, con domicilio en Benito Juárez 1028, Esmeralda, 67140 Guadalupe, N.L.
+            {' '}
+            (en adelante, el &quot;Responsable&quot;), es responsable del tratamiento de los datos personales
+            {' '}
+            recabados a través de la aplicación móvil MMS App. Traslados USA – MX (en adelante, la &quot;Aplicación&quot;),
+            {' '}
+            de conformidad con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (México),
+            {' '}
+            su Reglamento, y las leyes de privacidad aplicables en los Estados Unidos de América.
           </Typography>
           <Typography variant="body1" className="section-text">
             Este Aviso de Privacidad está dirigido exclusivamente a directores funerarios, casas funerarias y personal profesional autorizado que utilicen la Aplicación.
@@ -44,7 +52,11 @@ function Privacy() {
             1. DATOS PERSONALES QUE SE RECABAN
           </Typography>
           <Typography variant="body1" className="section-text">
-            La Aplicación móvil únicamente recopila los datos estrictamente necesarios para el registro, autenticación del Usuario Profesional y la carga de archivos relacionados con la prestación del servicio. Otros datos podrán ser gestionados fuera de la Aplicación por medios administrativos independientes.
+            La Aplicación móvil únicamente recopila los datos estrictamente necesarios para el registro,
+            {' '}
+            autenticación del Usuario Profesional y la carga de archivos relacionados con la prestación del servicio.
+            {' '}
+            Otros datos podrán ser gestionados fuera de la Aplicación por medios administrativos independientes.
           </Typography>
           <Typography variant="body1" className="section-text">
             El Responsable podrá recabar los siguientes datos personales del Usuario Profesional:
@@ -184,7 +196,9 @@ function Privacy() {
             6. USO DE COOKIES Y TECNOLOGÍAS SIMILARES
           </Typography>
           <Typography variant="body1" className="section-text">
-            La Aplicación puede utilizar tecnologías similares para fines de funcionamiento, seguridad y mejora del servicio. Estas tecnologías no recaban información personal distinta a la descrita en este Aviso.
+            La Aplicación puede utilizar tecnologías similares para fines de funcionamiento, seguridad y mejora del servicio.
+            {' '}
+            Estas tecnologías no recaban información personal distinta a la descrita en este Aviso.
           </Typography>
         </section>
 
@@ -202,7 +216,9 @@ function Privacy() {
             8. MODIFICACIONES AL AVISO DE PRIVACIDAD
           </Typography>
           <Typography variant="body1" className="section-text">
-            El Responsable se reserva el derecho de modificar este Aviso de Privacidad en cualquier momento. Las modificaciones estarán disponibles dentro de la Aplicación y surtirán efectos desde su publicación.
+            El Responsable se reserva el derecho de modificar este Aviso de Privacidad en cualquier momento.
+            {' '}
+            Las modificaciones estarán disponibles dentro de la Aplicación y surtirán efectos desde su publicación.
           </Typography>
         </section>
 
