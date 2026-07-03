@@ -184,7 +184,10 @@ function Privacy() {
             Las solicitudes ARCO deberán enviarse a:
           </Typography>
           <ul className="privacy-list">
-            <li>Correo electrónico: <a href="mailto:mexicomortuaryservices@gmail.com">mexicomortuaryservices@gmail.com</a></li>
+            <li>
+              Correo electrónico:
+              <a href="mailto:mexicomortuaryservices@gmail.com">mexicomortuaryservices@gmail.com</a>
+            </li>
           </ul>
           <Typography variant="body1" className="section-text">
             La solicitud deberá incluir nombre, medio de contacto y descripción clara del derecho que se desea ejercer.
@@ -239,7 +242,10 @@ function Privacy() {
             Para cualquier duda relacionada con este Aviso de Privacidad:
           </Typography>
           <ul className="privacy-list">
-            <li>Correo electrónico: <a href="mailto:mexicomortuaryservices@gmail.com">mexicomortuaryservices@gmail.com</a></li>
+            <li>
+              Correo electrónico:
+              <a href="mailto:mexicomortuaryservices@gmail.com">mexicomortuaryservices@gmail.com</a>
+            </li>
             <li>Teléfono: 81 1934 0490</li>
           </ul>
         </section>
