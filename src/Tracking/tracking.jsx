@@ -313,9 +313,9 @@ function Tracking() {
             <h3>{t('ServiceStatus')}</h3>
             {Label(trackingInfo.status)}
             <h3>{t('TrackingStatus')}</h3>
-            {list.length !== 1
+            {list.length !== 0
               ? list.map((item, i) => (
-                  <div className={i === 0 ? 'dnone' : 'flex trackingDetail'} key={i}>
+                  <div className='flex trackingDetail' key={i}>
                     <span>
                       <Avatar>
                         <ArrowForwardRoundedIcon />
