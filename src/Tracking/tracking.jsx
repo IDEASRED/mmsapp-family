@@ -29,12 +29,12 @@ import PhoneInTalkRoundedIcon from '@mui/icons-material/PhoneInTalkRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 import {
- Button,
- Avatar,
- Dialog,
- DialogTitle,
- DialogActions,
- DialogContent,
+  Button,
+  Avatar,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
 } from '@mui/material';
 import { TailSpin } from 'react-loader-spinner';
 import './tracking.scss';
@@ -51,18 +51,18 @@ const Modal = ({ open, title, handleClose, btn }) => {
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="false">
       <DialogTitle>{t(`${title}`)}</DialogTitle>
-        {btn === 'Call' ? (
-          <DialogContent>
-            <p style={{ marginTop: '0' }}>
-              {t('ModalContent')}
-            </p>
-          </DialogContent>
-        ) : ''}
+      {btn === 'Call' ? (
+        <DialogContent>
+          <p style={{ marginTop: '0' }}>
+            {t('ModalContent')}
+          </p>
+        </DialogContent>
+      ) : ''}
       <DialogActions>
         <Button onClick={handleClose}>{t('Cancel')}</Button>
         {btn === 'Yes' ? (
           <Button form="form-family" type="submit" variant="contained" onClick={handleOutSession}>{t(`${btn}`)}</Button>
-          ) : (
+        ) : (
           <Button form="form-family" type="submit" variant="contained" href="tel:+528341027851">{t(`${btn}`)}</Button>
         )}
       </DialogActions>
@@ -315,16 +315,16 @@ function Tracking() {
             <h3>{t('TrackingStatus')}</h3>
             {list.length !== 0
               ? list.map((item, i) => (
-                  <div className='flex trackingDetail' key={i}>
-                    <span>
-                      <Avatar>
-                        <ArrowForwardRoundedIcon />
-                      </Avatar>
-                      <span className="poste" />
-                    </span>
-                    <p><span>{item.date}</span> {item.tracking_info}</p>
-                  </div>
-                ))
+                <div className="flex trackingDetail" key={i}>
+                  <span>
+                    <Avatar>
+                      <ArrowForwardRoundedIcon />
+                    </Avatar>
+                    <span className="poste" />
+                  </span>
+                  <p><span>{item.date}</span> {item.tracking_info}</p>
+                </div>
+              ))
               : 'No recods yet'}
           </div>
           <div className="btnResponsive">

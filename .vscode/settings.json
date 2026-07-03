@@ -1,7 +1,7 @@
 {
   "editor.defaultFormatter": null,
   "editor.formatOnSave": true,
-  "editor.hover.enabled": true,
+  "editor.hover.enabled": "on",
   "editor.hover.sticky": true,
   "editor.acceptSuggestionOnCommitCharacter": true,
   "editor.acceptSuggestionOnEnter": "on",
