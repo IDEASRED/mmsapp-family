@@ -46,7 +46,7 @@ const Modal = ({ open, title, handleClose, btn }) => {
   const navigate = useNavigate();
   const handleOutSession = () => {
     localStorage.clear();
-    navigate('/');
+    navigate('/', { replace: true });
   };
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="false">
@@ -73,35 +73,22 @@ const Modal = ({ open, title, handleClose, btn }) => {
 function Tracking() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
   const { changeL } = useContext(userDataContext);
 
-  const { loading, setLoading } = userDataService();
+  const { loading } = userDataService();
   const [translateEs, setTranslateEs] = useState(false);
-  const [trackingInfo, setTrackingInfo] = useState({});
-  const [list, setList] = useState([]);
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [btn, setBtn] = useState('');
-  const listServs = localStorage.getItem('servList');
-  const servicesList = JSON.parse(listServs);
-  const filterApply = servicesList.filter((i) => i.id === location.state.data);
+  const trackingInfo = location.state?.service ?? {};
+  const list = Array.isArray(trackingInfo.rastreo) ? trackingInfo.rastreo : [];
 
   useEffect(() => {
-    if (filterApply !== undefined && filterApply.length > 0) {
-      setTrackingInfo(filterApply[0]);
-      setList(filterApply[0].rastreo);
+    if (!location.state?.service) {
+      navigate('/', { replace: true });
     }
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, [filterApply, setLoading]);
-
-  useEffect(() => {
-    if (filterApply !== undefined && filterApply.length > 0) {
-      setTrackingInfo(filterApply[0]);
-      setList(filterApply[0].rastreo);
-    }
-  }, [listServs, filterApply]);
+  }, [location.state, navigate]);
 
   const changeLanguage = (lng) => {
     setTranslateEs(!translateEs);
@@ -277,7 +264,7 @@ function Tracking() {
               {trackingInfo.mortuary_name}
             </p>
             {handleServiceToShow(trackingInfo.service)}
-            {trackingInfo.sucursal !== undefined ? (
+            {trackingInfo.sucursal ? (
               <>
                 <p style={{ margin: '0.5rem 0 1rem 0' }}>
                   {trackingInfo.sucursal.nombre_sucursal ? (

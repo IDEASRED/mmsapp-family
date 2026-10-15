@@ -13,6 +13,7 @@ import {
 } from 'firebase/firestore';
 import { userDataContext } from '../context/userData-context.js';
 import { db } from '../firebase.js';
+import { lookupFamilyService } from './familyAuth.js';
 
 export const userDataService = () => {
   const [userDataServObj] = useState({});
@@ -22,23 +23,22 @@ export const userDataService = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { addServicesArray } = useContext(userDataContext);
 
-  const getAllServicesAdmin = async () => {
+  const getAllServicesAdmin = () => {
     const servicesRef = collection(db, 'services');
     const q3 = query(servicesRef, orderBy('timestamp', 'desc'));
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const unsub = await onSnapshot(q3, (querySnapshot3) => {
+    return onSnapshot(q3, (querySnapshot3) => {
       const servArr = [];
       querySnapshot3.forEach((docx) => {
-        const userServices = {
+        servArr.push({
           id: docx.id,
           ...docx.data(),
-        };
-        servArr.push(userServices);
-        // addServicesArray(servArr);
-        localStorage.setItem('servList', JSON.stringify(servArr));
-        setServicesArr(servArr);
-        // console.log('s get: ', servArr);
+        });
       });
+      localStorage.setItem('servList', JSON.stringify(servArr));
+      setServicesArr(servArr);
+    }, (error) => {
+      // eslint-disable-next-line no-console
+      console.error('Error loading services: ', error);
     });
   };
 
@@ -77,41 +77,12 @@ export const userDataService = () => {
     }
   };
 
-  const searchFamilyTracking = (array, searchBy, data) => {
-    // if (searchBy === 'phone') {
-    //   const findServiceTracking = array.find((i) => (i.nip_rastreo === data.nip_rastreo));
-    //   // console.log('find last:: ', findServiceTracking);
-    //   setService(findServiceTracking);
-    //   setLoading(true);
-    //   if (findServiceTracking !== undefined) {
-    //     const serviceObj = findServiceTracking.auth_list_phone.find((i) => (i === data.phone));
-    //     // console.log('service last:: ', serviceObj);
-    //     if (serviceObj !== undefined) {
-    //       setService(findServiceTracking);
-    //       setLoading(true);
-    //     }
-    //   }
-    // }
-    if (searchBy === 'email') {
-      const findServiceTrackingEmail = array.find((i) => (i.nip_rastreo === data.nip_rastreo));
-      // console.log('find last:: ', findServiceTrackingEmail);
-      // setService(findServiceTrackingEmail);
-      // setLoading(true);
-      if (findServiceTrackingEmail !== undefined) {
-        const serviceObjEmail = findServiceTrackingEmail.auth_list_email.find((i) => (i.email === data.email));
-        // console.log('service last:: ', serviceObjEmail);
-        setLoading(true);
-        if (serviceObjEmail !== undefined) {
-          setService(findServiceTrackingEmail);
-          setLoading(true);
-        }
-      } else {
-        setLoading(false);
-      }
-    }
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+  const searchFamilyTracking = async (searchBy, data) => {
+    setLoading(true);
+    const result = await lookupFamilyService(searchBy, data);
+    setService(result.service);
+    setLoading(false);
+    return result;
   };
 
   return {

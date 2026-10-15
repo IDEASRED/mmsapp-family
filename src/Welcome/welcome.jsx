@@ -22,6 +22,7 @@ import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { userDataService } from '../service/userData.js';
+import { isValidPhone } from '../service/familyAuth.js';
 import { userDataContext } from '../context/userData-context.js';
 import './Welcome.scss';
 import mxflag from '../img/mexico.png';
@@ -33,26 +34,23 @@ function Welcome() {
   const navigate = useNavigate();
 
   const [translateEs, setTranslateEs] = useState(false);
-  const [notFound, setNotFound] = useState(false);
+  const [searchError, setSearchError] = useState(null);
   const [option, setOption] = useState('email');
 
-  const { changeL, addServicesArray } = useContext(userDataContext);
+  const { changeL } = useContext(userDataContext);
 
-  const { servicesArr, getAllServicesAdmin, loading, searchFamilyTracking, service } =
-  userDataService();
+  const { loading, searchFamilyTracking } = userDataService();
 
   useEffect(() => {
-    getAllServicesAdmin();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Older versions cached every service here; it must not stay in the browser.
+    localStorage.removeItem('servList');
   }, []);
 
   const {
     register,
     handleSubmit,
-    resetField,
     formState: { errors },
-  } = useForm({});
-  const errorMessage = 'Campos requeridos';
+  } = useForm({ shouldUnregister: true });
 
   const changeLanguage = (lng) => {
     setTranslateEs(!translateEs);
@@ -62,53 +60,23 @@ function Welcome() {
 
   const handleOption = (event) => {
     setOption(event.target.value);
+    setSearchError(null);
   };
 
-  const onSubmit = (data) => {
-    if (servicesArr !== undefined) {
-      addServicesArray(servicesArr);
-      if (option === 'phone') {
-        const obj = {
-          phone: data.phone,
-          nip_rastreo: data.nip_rastreo,
-        };
-        searchFamilyTracking(servicesArr, option, obj);
-      } else {
-        const obj2 = {
-          email: data.email,
-          nip_rastreo: data.nip_rastreo,
-        };
-        searchFamilyTracking(servicesArr, option, obj2);
-      }
+  const onSubmit = async (data) => {
+    setSearchError(null);
+    const credentials = option === 'phone'
+      ? { phone: data.phone, nip_rastreo: data.nip_rastreo }
+      : { email: data.email, nip_rastreo: data.nip_rastreo };
+    const { service, error } = await searchFamilyTracking(option, credentials);
+
+    if (service !== undefined) {
+      navigate(`/tracking/${service.id}`, { state: { service } });
+      return;
     }
+
+    setSearchError(error);
   };
-
-  useEffect(() => {
-    if (loading) {
-      // console.log('s: ', service);
-      // console.log('n: ', notFound);
-      // console.log('l: ', loading);
-      if (service === undefined) {
-        setNotFound(true);
-        resetField('email');
-        resetField('phone');
-        resetField('nip_rastreo');
-      } else if (service !== undefined) {
-        navigate(`/tracking/${service.id}`, { state: { data: service.id } });
-        // navigate(`/tracking/${service.id}`);
-      }
-    }
-  }, [loading, notFound, service, navigate, resetField]);
-
-  useEffect(() => {
-    // console.log('s2: ', service);
-    if (service === undefined) {
-      setTimeout(() => {
-        setNotFound(false);
-      }, 3000);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
 
   return (
     <Grid
@@ -118,130 +86,126 @@ function Welcome() {
       alignItems="center"
       spacing={2}
     >
-      {!loading ? (
-        <Grid item xs={12} md={12} className="formLogin">
-          <div className="flags">
-            {!translateEs ? (
-              <Button onClick={() => changeLanguage('en')}>
-                <img src={usaflag} alt="usa flag" style={{ width: '60%' }} />
-              </Button>
-            ) : (
-              <Button onClick={() => changeLanguage('es')}>
-                <img src={mxflag} alt="mx flag" style={{ width: '60%' }} />
-              </Button>
-            )}
-          </div>
-          <div style={{ width: '100%', display: 'flex' }}>
-            <img src={imgBranding} alt="Imagen representando acompañamiento" className="imgBranding" />
-          </div>
-          <h2
-            style={{
-              color: '#455a64',
-              margin: '1rem 0 0 0',
-            }}
-          >
-            {t('Welcome')}
-          </h2>
-          <p style={{ marginTop: '0' }}>{t('WelcomeDes')}</p>
-          {(notFound) ? <Alert style={{ marginTop: '1rem' }} severity="error">{t('NotFound')}</Alert> : ''}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            style={{ padding: '2rem 0', display: 'inline-grid', width: '100%' }}
-          >
-            <RadioGroup
-              aria-labelledby="sucursales-radio"
-              name="controlled-radio-buttons-group"
-              value={option}
-              onChange={handleOption}
-            >
-              <FormLabel id="sucursales-radio" style={{ marginTop: '0rem' }}>
-                {t('FormDesc')}
-              </FormLabel>
-              <div className="flex">
-                <FormControlLabel
-                  value="email"
-                  control={<Radio />}
-                  label={t('Email')}
-                />
-                <FormControlLabel
-                  value="phone"
-                  disabled
-                  control={<Radio />}
-                  label={t('Telefono')}
-                />
-              </div>
-            </RadioGroup>
-            {option === 'email' ? (
-              <TextField
-                autoFocus
-                margin="dense"
-                id="email"
-                label={t('Email')}
-                type="email"
-                fullWidth
-                variant="standard"
-                {...register('email', { required: true })}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <EmailRoundedIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            ) : (
-              <TextField
-                autoFocus
-                margin="dense"
-                id="phone"
-                label={t('Telefono')}
-                type="number"
-                fullWidth
-                variant="standard"
-                {...register('phone', { required: true })}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <LocalPhoneRoundedIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            )}
-            {errors.email && <span>{t('RequiredField')}</span>}
-            <br />
-            <TextField
-              {...register('nip_rastreo', { required: true })}
-              label="NIP"
-              variant="standard"
-              type="text"
-            />
-            {errors.password && <span>{t('RequiredField')}</span>}
-            {errorMessage !== '' ? (
-              <p className="errorM">{errorMessage}</p>
-            ) : (
-              ''
-            )}
-            <Button
-              variant="contained"
-              type="submit"
-              className="btnLogin fullw lpage"
-            >
-              {t('VerAhora')}
+      <Grid item xs={12} md={12} className="formLogin">
+        <div className="flags">
+          {!translateEs ? (
+            <Button onClick={() => changeLanguage('en')}>
+              <img src={usaflag} alt="usa flag" style={{ width: '60%' }} />
             </Button>
-          </form>
-        </Grid>
-      ) : (
-        <div className="loader">
-          <TailSpin
-            color="#8f0f1e"
-            height={50}
-            width={100}
-            ariaLabel="loading"
-          />
-          <p>{t('LoadingLabel')}</p>
+          ) : (
+            <Button onClick={() => changeLanguage('es')}>
+              <img src={mxflag} alt="mx flag" style={{ width: '60%' }} />
+            </Button>
+          )}
         </div>
-      )}
+        <div style={{ width: '100%', display: 'flex' }}>
+          <img src={imgBranding} alt="Imagen representando acompañamiento" className="imgBranding" />
+        </div>
+        <h2
+          style={{
+            color: '#455a64',
+            margin: '1rem 0 0 0',
+          }}
+        >
+          {t('Welcome')}
+        </h2>
+        <p style={{ marginTop: '0' }}>{t('WelcomeDes')}</p>
+        {searchError ? <Alert style={{ marginTop: '1rem' }} severity="error" role="alert">{t(searchError)}</Alert> : ''}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          style={{ padding: '2rem 0', display: 'inline-grid', width: '100%' }}
+        >
+          <RadioGroup
+            aria-labelledby="sucursales-radio"
+            name="controlled-radio-buttons-group"
+            value={option}
+            onChange={handleOption}
+          >
+            <FormLabel id="sucursales-radio" style={{ marginTop: '0rem' }}>
+              {t('FormDesc')}
+            </FormLabel>
+            <div className="flex">
+              <FormControlLabel
+                value="email"
+                control={<Radio />}
+                label={t('Email')}
+              />
+              <FormControlLabel
+                value="phone"
+                control={<Radio />}
+                label={t('Telefono')}
+              />
+            </div>
+          </RadioGroup>
+          {option === 'email' ? (
+            <TextField
+              autoFocus
+              margin="dense"
+              id="email"
+              label={t('Email')}
+              type="email"
+              fullWidth
+              variant="standard"
+              error={!!errors.email}
+              helperText={errors.email ? t(errors.email.message) : ''}
+              {...register('email', {
+                required: 'RequiredField',
+                pattern: { value: /^\S+@\S+\.\S+$/, message: 'InvalidEmail' },
+              })}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailRoundedIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          ) : (
+            <TextField
+              autoFocus
+              margin="dense"
+              id="phone"
+              label={t('Telefono')}
+              type="tel"
+              fullWidth
+              variant="standard"
+              error={!!errors.phone}
+              helperText={errors.phone ? t(errors.phone.message) : t('PhoneHelper')}
+              {...register('phone', {
+                required: 'RequiredField',
+                validate: (value) => isValidPhone(value) || 'InvalidPhone',
+              })}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocalPhoneRoundedIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          )}
+          <br />
+          <TextField
+            {...register('nip_rastreo', { required: 'RequiredField' })}
+            id="nip_rastreo"
+            label="NIP"
+            variant="standard"
+            type="text"
+            error={!!errors.nip_rastreo}
+            helperText={errors.nip_rastreo ? t(errors.nip_rastreo.message) : ''}
+          />
+          <Button
+            variant="contained"
+            type="submit"
+            className="btnLogin fullw lpage"
+            disabled={loading}
+          >
+            {loading ? (
+              <TailSpin color="#fff" height={24} width={24} ariaLabel={t('LoadingLabel')} />
+            ) : t('VerAhora')}
+          </Button>
+        </form>
+      </Grid>
     </Grid>
   );
 }
