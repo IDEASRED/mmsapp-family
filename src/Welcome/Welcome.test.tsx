@@ -28,6 +28,8 @@ const service = {
   origen: 'Dallas',
   destino: 'Monterrey',
   sucursal: 'Irving',
+  // Live callable responses serialize Firestore Timestamps as {_seconds}.
+  timestamp: { _seconds: 1791930383, _nanoseconds: 0 },
   fecha: '2026/10/14',
   arrivalDate: null,
   rastreo: [{ date: '2026-10-14', tracking_info: 'Salió de Dallas' }],
@@ -86,7 +88,8 @@ test.each([
   expect(await screen.findByText('Salió de Dallas')).toBeInTheDocument();
   expect(screen.getByText('ABC123')).toBeInTheDocument();
   expect(screen.getByText(/Irving/)).toBeInTheDocument();
-  expect(screen.getByText(/Fecha estimada de llegada/)).toBeInTheDocument();
+  expect(screen.getByText(/Fecha estimada de llegada/)).toHaveTextContent(/2026/);
+  expect(screen.queryByText(/\[object Object\]/)).not.toBeInTheDocument();
   expect(mockLookupCalls).toEqual([{ nip: 'ABC123', phone, email: '' }]);
 });
 

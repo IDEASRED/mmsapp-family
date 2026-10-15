@@ -7,14 +7,15 @@ import {
 } from './serviceDisplay.js';
 
 describe('getArrivalDate', () => {
-  test('prefers timestamp, then fecha, then arrivalDate, then fecha_recoleccion', () => {
+  test('prefers a usable Firestore timestamp over fecha', () => {
     expect(getArrivalDate({
-      timestamp: '2026-10-20',
+      timestamp: { _seconds: 1791930383, _nanoseconds: 0 },
       fecha: '2026/10/14',
-      arrivalDate: 'old',
-      fecha_recoleccion: '2026/10/10',
-    })).toBe('2026-10-20');
-    expect(getArrivalDate({ fecha: '2026/10/14', arrivalDate: 'old' })).toBe('2026/10/14');
+    })).toEqual({ _seconds: 1791930383, _nanoseconds: 0 });
+  });
+
+  test('skips empty timestamp objects and uses fecha', () => {
+    expect(getArrivalDate({ timestamp: {}, fecha: '2026/10/14' })).toBe('2026/10/14');
     expect(getArrivalDate({ arrivalDate: '2026-11-01' })).toBe('2026-11-01');
     expect(getArrivalDate({ fecha_recoleccion: '2026/10/10' })).toBe('2026/10/10');
     expect(getArrivalDate({})).toBe('');
@@ -32,12 +33,19 @@ describe('sucursal helpers', () => {
 });
 
 describe('formatDisplayDate', () => {
+  test('formats Firestore timestamps without showing [object Object]', () => {
+    const formatted = formatDisplayDate({ _seconds: 1791930383, _nanoseconds: 0 }, 'es-MX');
+    expect(formatted).toMatch(/2026/);
+    expect(formatted).not.toContain('[object Object]');
+  });
+
   test('formats slash dates and ISO timestamps', () => {
     expect(formatDisplayDate('2026/10/14', 'es-MX')).toMatch(/2026/);
     expect(formatDisplayDate('2026-10-15T17:02:55.236Z', 'es-MX')).toMatch(/2026/);
   });
 
-  test('returns the original value when it cannot be parsed', () => {
+  test('returns empty string for unreadable objects instead of [object Object]', () => {
+    expect(formatDisplayDate({})).toBe('');
     expect(formatDisplayDate('por confirmar')).toBe('por confirmar');
   });
 });
