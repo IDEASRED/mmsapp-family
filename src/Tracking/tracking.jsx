@@ -39,6 +39,12 @@ import {
 import { TailSpin } from 'react-loader-spinner';
 import './tracking.scss';
 import { userDataService } from '../service/userData.js';
+import {
+  formatDisplayDate,
+  getArrivalDate,
+  getSucursalAddress,
+  getSucursalName,
+} from '../service/serviceDisplay.js';
 import { userDataContext } from '../context/userData-context.js';
 
 const Modal = ({ open, title, handleClose, btn }) => {
@@ -83,6 +89,11 @@ function Tracking() {
   const [btn, setBtn] = useState('');
   const trackingInfo = location.state?.service ?? {};
   const list = Array.isArray(trackingInfo.rastreo) ? trackingInfo.rastreo : [];
+  const sucursalName = getSucursalName(trackingInfo.sucursal);
+  const sucursalAddress = getSucursalAddress(trackingInfo.sucursal);
+  const alternateAddress = String(trackingInfo.direccion_alterna ?? '').trim();
+  const arrivalDate = getArrivalDate(trackingInfo);
+  const dateLocale = i18n.language === 'en' ? 'en-US' : 'es-MX';
 
   useEffect(() => {
     if (!location.state?.service) {
@@ -264,37 +275,26 @@ function Tracking() {
               {trackingInfo.mortuary_name}
             </p>
             {handleServiceToShow(trackingInfo.service)}
-            {trackingInfo.sucursal ? (
-              <>
-                <p style={{ margin: '0.5rem 0 1rem 0' }}>
-                  {trackingInfo.sucursal.nombre_sucursal ? (
-                    <div style={{ display: 'flex' }}>
-                      <LocationOnRoundedIcon /> {t('NombreSucursal')}:{' '}
-                      {trackingInfo.sucursal.nombre_sucursal}
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                </p>
-                <p style={{ margin: '0.5rem 0 1rem 0' }}>
-                  {trackingInfo.sucursal.direccion_sucursal ? (
-                    <>
-                      {t('Direccion')}: {trackingInfo.sucursal.direccion_sucursal}
-                    </>
-                  ) : (
-                    ''
-                  )}
-                </p>
-              </>
-            ) : (
+            {sucursalName ? (
+              <p style={{ margin: '0.5rem 0 1rem 0', display: 'flex' }}>
+                <LocationOnRoundedIcon /> {t('NombreSucursal')}: {sucursalName}
+              </p>
+            ) : ''}
+            {sucursalAddress ? (
+              <p style={{ margin: '0.5rem 0 1rem 0' }}>
+                {t('Direccion')}: {sucursalAddress}
+              </p>
+            ) : ''}
+            {!sucursalName && alternateAddress ? (
               <div style={{ display: 'flex' }}>
-                <LocationOnRoundedIcon /> {t('DireccionAlterna')}:{' '}
-                {trackingInfo.direccion_alterna}
+                <LocationOnRoundedIcon /> {t('DireccionAlterna')}: {alternateAddress}
               </div>
-            )}
-            <p style={{ display: 'flex', alignItems: 'center' }}>
-              <CalendarMonthRoundedIcon /> {t('FechaArrival')}: {trackingInfo.arrivalDate}
-            </p>
+            ) : ''}
+            {arrivalDate ? (
+              <p style={{ display: 'flex', alignItems: 'center' }}>
+                <CalendarMonthRoundedIcon /> {t('FechaArrival')}: {formatDisplayDate(arrivalDate, dateLocale)}
+              </p>
+            ) : ''}
           </div>
           <div className="trackingMainArea">
             <h3>{t('ServiceStatus')}</h3>
@@ -309,7 +309,11 @@ function Tracking() {
                     </Avatar>
                     <span className="poste" />
                   </span>
-                  <p><span>{item.date}</span> {item.tracking_info}</p>
+                  <p>
+                    <span>{formatDisplayDate(item.date, dateLocale)}</span>
+                    {' '}
+                    {item.tracking_info}
+                  </p>
                 </div>
               ))
               : 'No recods yet'}

@@ -27,7 +27,9 @@ const service = {
   nip_rastreo: 'ABC123',
   origen: 'Dallas',
   destino: 'Monterrey',
-  sucursal: null,
+  sucursal: 'Irving',
+  fecha: '2026/10/14',
+  arrivalDate: null,
   rastreo: [{ date: '2026-10-14', tracking_info: 'Salió de Dallas' }],
 };
 
@@ -83,6 +85,8 @@ test.each([
 
   expect(await screen.findByText('Salió de Dallas')).toBeInTheDocument();
   expect(screen.getByText('ABC123')).toBeInTheDocument();
+  expect(screen.getByText(/Irving/)).toBeInTheDocument();
+  expect(screen.getByText(/Fecha estimada de llegada/)).toBeInTheDocument();
   expect(mockLookupCalls).toEqual([{ nip: 'ABC123', phone, email: '' }]);
 });
 
