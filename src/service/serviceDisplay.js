@@ -1,9 +1,13 @@
 const isPlainObject = (value) => value !== null && typeof value === 'object' && !(value instanceof Date);
 
+const FIRESTORE_SECONDS_KEY = '_seconds';
+
 const getTimestampSeconds = (value) => {
   if (!isPlainObject(value)) return null;
   if (typeof value.seconds === 'number') return value.seconds;
-  if (typeof value._seconds === 'number') return value._seconds;
+  // Firestore callable payloads serialize Timestamps as { "_seconds": number }.
+  const serializedSeconds = value[FIRESTORE_SECONDS_KEY];
+  if (typeof serializedSeconds === 'number') return serializedSeconds;
   if (typeof value.toMillis === 'function') return value.toMillis() / 1000;
   return null;
 };
