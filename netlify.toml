@@ -5,3 +5,6 @@
 [build.environment]
   NODE_VERSION = "22.22.0"
   NPM_VERSION = "10.9.2"
+  # Firebase web API key: public by design (ships in the JS bundle). Access is
+  # controlled by Firestore rules and the key's referrer restrictions in GCP.
+  SECRETS_SCAN_SMART_DETECTION_OMIT_VALUES = "AIzaSyC8eUvVA4mZbW8WfSchQqnoNMYtctwTdPI"
